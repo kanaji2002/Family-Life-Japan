@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Life Japan - 子育てに最適な場所を見つけよう</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #34495e;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        
+        .flow-section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .flow-section.active {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .survey-form {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .question-group {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .question-group h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .option-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .option-card:hover, .option-card.selected {
+            border-color: #667eea;
+            background: #f0f3ff;
+            transform: translateY(-2px);
+        }
+        
+        .japan-map {
+            width: 100%;
+            max-width: 700px;
+            height: 500px;
+            background: #e9ecef;
+            border-radius: 15px;
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .region {
+            position: absolute;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 0.9rem;
+        }
+        
+        .region.recommended {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        
+        .region.good {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+        
+        .region.not-recommended {
+            background: #95a5a6;
+        }
+        
+        .region:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .kansai { top: 55%; left: 42%; width: 80px; height: 50px; }
+        .kanto { top: 30%; left: 55%; width: 80px; height: 50px; }
+        .kyushu { top: 75%; left: 25%; width: 70px; height: 50px; }
+        .hokkaido { top: 5%; left: 58%; width: 90px; height: 45px; }
+        .tohoku { top: 18%; left: 60%; width: 75px; height: 55px; }
+        .chubu { top: 40%; left: 48%; width: 75px; height: 50px; }
+        .chugoku { top: 62%; left: 32%; width: 75px; height: 45px; }
+        .shikoku { top: 70%; left: 40%; width: 65px; height: 40px; }
+        
+        .city-profile {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .profile-main {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .profile-hero {
+            height: 200px;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .profile-content {
+            padding: 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 2rem;
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            border-bottom-color: #667eea;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .rating {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .rating h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .action-btn {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .action-btn.primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .action-btn.secondary {
+            background: #f8f9fa;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .ai-chat-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .ai-chat-button:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .chat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .chat-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .chat-container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            height: 600px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .close-chat:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: #f8f9fa;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 18px;
+            word-wrap: break-word;
+            animation: messageSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message.ai {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message.user {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chat-input-area {
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+        
+        .send-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background: #e9ecef;
+            padding: 0.8rem 1.2rem;
+            border-radius: 18px;
+            border-bottom-left-radius: 5px;
+            max-width: 80%;
+        }
+        
+        .typing-indicator.show {
+            display: block;
+            animation: messageSlideIn 0.3s ease-out;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 0.3rem;
+        }
+        
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typingBounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .city-profile {
+                grid-template-columns: 1fr;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AIチャットモーダル -->
+    <div id="chatModal" class="chat-modal">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-title">
+                    🤖 AIファミリーアドバイザー
+                </div>
+                <button class="close-chat" onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai">
+                    こんにちは！子育てに最適な場所探しをお手伝いします。どんなことでもお気軽にご相談ください 😊
+                </div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="メッセージを入力..."
+                    onkeypress="handleKeyPress(event)"
+                />
+                <button class="send-button" onclick="sendMessage()" id="sendButton">
+                    送信
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <header>
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Family Life Japan</h2>
+                <button class="ai-chat-button" onclick="toggleChat()">
+                    🤖 AIに相談
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- フロー1: ホームページ -->
+    <section id="homepage" class="flow-section active">
+        <div class="hero">
+            <div class="container">
+                <h1>子育てに最適な場所を見つけよう</h1>
+                <p>家族にやさしい郊外・地方を発見</p>
+                <button class="cta-button" onclick="startJourney()">家族の居住地探しを始める</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- フロー2: 家族調査 -->
+    <section id="survey" class="flow-section">
+        <div class="container">
+            <h2>30秒で終わる簡易家族調査</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 25%"></div>
+            </div>
+            
+            <form class="survey-form">
+                <div class="question-group">
+                    <h3>家族の段階</h3>
+                    <div class="options" data-question="family-stage">
+                        <div class="option-card" onclick="selectOption(this)" data-value="planning">
+                            <div>👶</div>
+                            <div>妊娠を計画中</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this)" data-value="pregnant">
+                            <div>🤱</div>
+                            <div>妊娠中</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this)" data-value="has-children">
+                            <div>👨‍👩‍👧‍👦</div>
+                            <div>子どもがいる</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <h3>働き方</h3>
+                    <div class="options" data-question="work-style">
+                        <div class="option-card" onclick="selectOption(this)" data-value="remote">
+                            <div>💻</div>
+                            <div>フルリモート</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this)" data-value="hybrid">
+                            <div>🏢</div>
+                            <div>ハイブリッド</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this)" data-value="onsite">
+                            <div>🚃</div>
+                            <div>現地勤務希望</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <h3>予算志向</h3>
+                    <div class="options" data-question="budget">
+                        <div class="option-card" onclick="selectOption(this)" data-value="budget">
+                            <div>💰</div>
+                            <div>節約志向</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this)" data-value="balanced">
+                            <div>⚖️</div>
+                            <div>バランス重視</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this)" data-value="premium">
+                            <div>✨</div>
+                            <div>プレミアム</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <h3>ライフスタイル</h3>
+                    <div class="options" data-question="lifestyle">
+                        <div class="option-card" onclick="selectOption(this)" data-value="rural">
+                            <div>🌾</div>
+                            <div>静かな田舎</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this)" data-value="small-city">
+                            <div>🏘️</div>
+                            <div>小都市の魅力</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this)" data-value="suburban">
+                            <div>🚊</div>
+                            <div>郊外の利便性</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="cta-button" onclick="showResults()" id="showResultsBtn" disabled>結果を見る</button>
+            </form>
+
+            <div class="navigation">
+                <button class="back-btn" onclick="showSection('homepage')">戻る</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- フロー3: 地図結果 -->
+    <section id="map-results" class="flow-section">
+        <div class="container">
+            <h2>あなたの家族におすすめの地域</h2>
+            <p>緑：非常におすすめ｜黄：おすすめ｜灰：その他</p>
+            
+            <div class="japan-map">
+                <div class="region not-recommended hokkaido" onclick="selectRegion('hokkaido')" data-region="北海道">
+                    北海道
+                </div>
+                <div class="region not-recommended tohoku" onclick="selectRegion('tohoku')" data-region="東北地方">
+                    東北地方
+                </div>
+                <div class="region good kanto" onclick="selectRegion('kanto')" data-region="関東地方">
+                    関東地方
+                </div>
+                <div class="region not-recommended chubu" onclick="selectRegion('chubu')" data-region="中部地方">
+                    中部地方
+                </div>
+                <div class="region recommended kansai" onclick="selectRegion('kansai')" data-region="関西地方">
+                    関西地方
+                </div>
+                <div class="region not-recommended chugoku" onclick="selectRegion('chugoku')" data-region="中国地方">
+                    中国地方
+                </div>
+                <div class="region not-recommended shikoku" onclick="selectRegion('shikoku')" data-region="四国地方">
+                    四国地方
+                </div>
+                <div class="region good kyushu" onclick="selectRegion('kyushu')" data-region="九州地方">
+                    九州地方
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="back-btn" onclick="showSection('survey')">戻る</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- フロー4: 地域概要 -->
+    <section id="region-overview" class="flow-section">
+        <div class="container">
+            <h2 id="regionTitle">関西地方：伝統文化と子育ての融合</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">18万円</div>
+                    <div>平均生活費</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">325</div>
+                    <div>保育所数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4.2/5</div>
+                    <div>学校の質</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">92%</div>
+                    <div>安全性</div>
+                </div>
+            </div>
+
+            <h3>都道府県を選択してください</h3>
+            <div class="options" id="prefectureOptions">
+                <div class="option-card" onclick="selectPrefecture('nara')">
+                    <div>🦌</div>
+                    <div>奈良県</div>
+                </div>
+                <div class="option-card" onclick="selectPrefecture('kyoto')">
+                    <div>🏰</div>
+                    <div>京都府</div>
+                </div>
+                <div class="option-card" onclick="selectPrefecture('osaka')">
+                    <div>🌊</div>
+                    <div>大阪府</div>
+                </div>
+                <div class="option-card" onclick="selectPrefecture('wakayama')">
+                    <div>⛩️</div>
+                    <div>和歌山県</div>
+                </div>
+                <div class="option-card" onclick="selectPrefecture('shiga')">
+                    <div>🍃</div>
+                    <div>滋賀県</div>
+                </div>
+                <div class="option-card" onclick="selectPrefecture('hyogo')">
+                    <div>🌸</div>
+                    <div>兵庫県</div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="back-btn" onclick="showSection('map-results')">戻る</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- フロー5: 市町村詳細 -->
+    <section id="city-detail" class="flow-section">
+        <div class="container">
+            <div class="city-profile">
+                <div class="profile-main">
+                    <div class="profile-hero">
+                        <h2 id="cityTitle">🏔️ 生駒市 - 自然と都市の調和</h2>
+                    </div>
+                    <div class="profile-content">
+                        <p id="cityDescription">大阪まで35分、平均家族生活費18万円</p>
+                        
+                        <div class="tabs">
+                            <div class="tab active" onclick="showTab('education')">保育・教育</div>
+                            <div class="tab" onclick="showTab('housing')">住宅・費用</div>
+                            <div class="tab" onclick="showTab('community')">コミュニティ</div>
+                            <div class="tab" onclick="showTab('work')">仕事・交通</div>
+                        </div>
+
+                        <div id="education-content" class="tab-content active">
+                            <h3>保育・教育</h3>
+                            <p>生駒市には質の高い保育施設と教育機関が揃っています。</p>
+                        </div>
+
+                        <div id="housing-content" class="tab-content">
+                            <h3>住宅・費用</h3>
+                            <p>生駒市の住宅は比較的手頃で、自然環境も豊かです。</p>
+                        </div>
+
+                        <div id="community-content" class="tab-content">
+                            <h3>コミュニティ</h3>
+                            <p>地域のイベントや活動が活発で、住民同士のつながりが強いです。</p>
+                        </div>
+
+                        <div id="work-content" class="tab-content">
+                            <h3>仕事・交通</h3>
+                            <p>大阪へのアクセスが良好で、通勤にも便利です。</p>
+                        </div>
+
+<script>
+  // フローセクションを切り替える
+  function showSection(sectionId) {
+      const sections = document.querySelectorAll('.flow-section');
+      sections.forEach(section => section.classList.remove('active'));
+      const target = document.getElementById(sectionId);
+      if (target) {
+          target.classList.add('active');
+      }
+  }
+
+  // 「家族の居住地探しを始める」ボタンを押した時
+  function startJourney() {
+      showSection('survey');
+  }
+
+  // AIチャットモーダルの開閉
+  function toggleChat() {
+      const modal = document.getElementById('chatModal');
+      modal.classList.toggle('active');
+  }
+
+  // オプション選択処理
+  function selectOption(el) {
+    const group = el.parentElement;
+    const options = group.querySelectorAll('.option-card');
+    options.forEach(opt => opt.classList.remove('selected'));
+    el.classList.add('selected');
+
+    // 表示中のセクションに限定してチェック
+    const currentSection = el.closest('.flow-section');
+    const allGroups = currentSection.querySelectorAll('.options');
+    let allAnswered = true;
+    allGroups.forEach(group => {
+        if (!group.querySelector('.selected')) {
+            allAnswered = false;
+        }
+    });
+
+    const showBtn = document.getElementById('showResultsBtn');
+    showBtn.disabled = !allAnswered;
+}
+
+
+  // 結果表示
+  function showResults() {
+      showSection('map-results');
+  }
+
+  // 地域選択時の遷移
+  function selectRegion(regionId) {
+      // 地域情報を設定する処理（簡易実装）
+      const title = {
+          kansai: '関西地方：伝統文化と子育ての融合',
+          kanto: '関東地方：利便性と教育の充実',
+          kyushu: '九州地方：温暖な気候と家族的な地域性'
+      }[regionId] || '地域情報';
+
+      document.getElementById('regionTitle').textContent = title;
+      showSection('region-overview');
+  }
+
+  // 都道府県選択時の遷移（仮実装）
+  function selectPrefecture(pref) {
+      const names = {
+          nara: '🏔️ 生駒市 - 自然と都市の調和',
+          kyoto: '⛩️ 京都市 - 歴史と教育のまち',
+          osaka: '🌆 大阪市 - 活気ある都市型育児',
+          wakayama: '🌊 白浜町 - 自然と温泉',
+          shiga: '🚴 彦根市 - 安全で緑豊かな環境',
+          hyogo: '🌸 神戸市 - 国際性と子育て支援'
+      };
+
+      const desc = {
+          nara: '大阪まで35分、平均家族生活費18万円',
+          kyoto: '文化教育環境が豊富、交通も便利',
+          osaka: '都市利便性と公的支援が両立',
+          wakayama: '自然豊かで子育てコストが低い',
+          shiga: '琵琶湖周辺に広がる自然と安全性',
+          hyogo: 'アクセスと国際環境が魅力'
+      };
+
+      document.getElementById('cityTitle').textContent = names[pref] || '市町村情報';
+      document.getElementById('cityDescription').textContent = desc[pref] || '';
+      showSection('city-detail');
+  }
+
+  // タブ切り替え
+  function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      contents.forEach(content => content.classList.remove('active'));
+
+      document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+      document.getElementById(`${tabId}-content`).classList.add('active');
+  }
+
+  // チャット送信（オプション）
+  function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+          event.preventDefault();
+          sendMessage();
+      }
+  }
+
+  function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const chatMessages = document.getElementById('chatMessages');
+
+      // ユーザーのメッセージ表示
+      const userMessage = document.createElement('div');
+      userMessage.className = 'message user';
+      userMessage.textContent = msg;
+      chatMessages.appendChild(userMessage);
+
+      input.value = '';
+      document.getElementById('typingIndicator').classList.add('show');
+
+      // AIメッセージ（仮応答）
+      setTimeout(() => {
+          document.getElementById('typingIndicator').classList.remove('show');
+          const aiMessage = document.createElement('div');
+          aiMessage.className = 'message ai';
+          aiMessage.textContent = 'ありがとうございます。現在お住まいの地域はどちらですか？';
+          chatMessages.appendChild(aiMessage);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1000);
+  }
+</script>
+                    </div>
+                </div>
+                <div class="profile-sidebar">
+                    <div class="rating">
+                        <h3>4.5/5</h3>
+                        <p>家族に優しい地域</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn primary" onclick="showSection('region-overview')">地域概要を見る</button>
+                        <button class="action-btn secondary" onclick="showSection('map-results')">地図結果に戻る</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="back-btn" onclick="showSection('region-overview')">戻る</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- スクリプト -->
+    <script>
+        // 初期表示
+        showSection('homepage');
+    </script>
+</body>
+</html>
