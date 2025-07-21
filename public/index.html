@@ -976,9 +976,6 @@
           width: 1.2em;
           height: 1.2em;
         }
-        .favorite-star.favorited {
-          color: #FFD700;
-        }
         .area-title, .area-desc, .area-recommend-desc, .area-recommend-box > div, .area-recommend-box h4, .area-recommend-box p {
           text-align: left;
         }
@@ -991,6 +988,61 @@
           margin-left: 5px;
           text-align: left !important;
         }
+
+        .mylist-button {
+          background: #fff;
+          color: #667eea;
+          border: 2px solid #667eea;
+          border-radius: 25px;
+          padding: 0.8rem 1.5rem;
+          margin-left: 1rem;
+          font-size: 1rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+        .mylist-button:hover {
+          background: #667eea;
+          color: #fff;
+        }
+
+        .mylist-areas-yoko {
+          display: flex;
+          flex-direction: row;
+          gap: 2rem;
+          margin-top: 2rem;
+          flex-wrap: wrap;
+        }
+
+   
+
+        .favorite-star {
+          color: #bbb;
+          background: none;
+          border: none;
+          font-size: 2rem;
+          cursor: pointer;
+          transition: color 0.2s;
+        }
+        .favorite-star.favorited {
+          color: #FFD700 !important;
+        }
+        .favorite-star .star-icon {
+          pointer-events: none;
+        }
+        /* .area-title, .area-desc, .area-recommend-desc, .area-recommend-box > div, .area-recommend-box h4, .area-recommend-box p {
+          text-align: left;
+        }
+        .area-recommend-box, .area-recommend-box * {
+          text-align: left !important;
+        } */
+        .area-recommend-box > div:not(.favorite-star) {
+          flex: 1;
+          align-self: flex-start;
+          margin-left: 5px;
+          text-align: left !important;
+        }
+
     </style>
 </head>
 <body>
@@ -1034,9 +1086,10 @@
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2>Family Life Japan</h2>
-                <button class="ai-chat-button" onclick="toggleChat()">
-                    🤖 AIに相談
-                </button>
+                <div>
+                    <button class="ai-chat-button" onclick="toggleChat()">🤖 AIに相談</button>
+                    <button class="mylist-button" onclick="showSection('mylist')">Mylist</button>
+                </div>
             </div>
         </div>
     </header>
@@ -1431,7 +1484,7 @@
                         </div>  
                         <button class="favorite-star" aria-label="お気に入り">
                             <span class="star-icon">&#9734;</span>
-                        </button>                 
+                        </button>               
                         </div>
                     
                     <div class="area-recommend-box">
@@ -1442,7 +1495,7 @@
                     </div>    
                     <button class="favorite-star" aria-label="お気に入り">
                         <span class="star-icon">&#9734;</span>
-                    </button>               
+                    </button>             
                     </div>
                     
                     <div class="area-recommend-box">
@@ -1453,7 +1506,7 @@
                     </div>
                     <button class="favorite-star" aria-label="お気に入り">
                         <span class="star-icon">&#9734;</span>
-                    </button>                 
+                    </button>              
                     </div>
                     
                     <div class="area-recommend-box">
@@ -1464,11 +1517,11 @@
                     </div>  
                     <button class="favorite-star" aria-label="お気に入り">
                         <span class="star-icon">&#9734;</span>
-                    </button>                
+                    </button>              
                     </div>
                     
                     <div class="area-recommend-box">
-                    <img src="area6.jpg" class="area-recommend-img" alt="高山町">
+                    <img src="area6.jpg" class="area-recommend-img" alt="学園前">
                     <div>
                         <div class="area-title">学園前</div>
                         <div class="area-desc">近鉄奈良線で大阪難波まで約30分。学園南・登美ヶ丘エリアは街路も広く整備されている。</div>
@@ -1853,12 +1906,86 @@ document.querySelectorAll('.favorite-star').forEach(btn => {
     this.classList.toggle('favorited');
     const star = this.querySelector('.star-icon');
     if (this.classList.contains('favorited')) {
-      star.innerHTML = '★';
+      star.innerHTML = '★'; // 塗りつぶし
     } else {
-      star.innerHTML = '☆';
+      star.innerHTML = '☆'; // 枠だけ
     }
   });
 });
+</script>
+
+<section id="mylist" class="flow-section">
+  <div class="container">
+    <h2>Mylist（お気に入りエリア）</h2>
+    <div id="mylist-areas">
+      <div class="area-recommend-box">
+        <img src="area6.jpg" class="area-recommend-img" alt="学園前">
+        <div>
+          <div class="area-title">学園前</div>
+          <div class="area-desc">近鉄奈良線で大阪難波まで約30分。学園南・登美ヶ丘エリアは街路も広く整備されている。</div>
+        </div>
+      </div>
+      <div class="area-recommend-box">
+        <img src="area5.jpg" class="area-recommend-img" alt="高山町">
+        <div>
+          <div class="area-title">高山町</div>
+          <div class="area-desc">アウトドア好きに人気。自然豊かで週末は家族でアクティビティも楽しめる。</div>
+        </div>
+      </div>
+      <div class="area-recommend-box">
+        <img src="area4.jpg" class="area-recommend-img" alt="南生駒">
+        <div>
+          <div class="area-title">南生駒</div>
+          <div class="area-desc">教育環境が充実。学校や公園が近く、子どもがのびのび育つエリア。</div>
+        </div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="showSection('city-detail')">← 戻る</button>
+    <div style="width:100%; display:flex; justify-content:center; margin-top:2rem;">
+      <img src="graph.png" alt="グラフ" style="max-width:100%; height:auto; display:block;" />
+    </div>
+  </div>
+</section>
+
+<script>
+// 星ボタンのクリックをイベントデリゲーションで常にハンドル
+
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.favorite-star');
+  if (btn) {
+    btn.classList.toggle('favorited');
+  }
+});
+
+function saveMylist(title, html) {
+  let mylist = JSON.parse(localStorage.getItem('mylist') || '{}');
+  mylist[title] = html;
+  localStorage.setItem('mylist', JSON.stringify(mylist));
+}
+function removeMylist(title) {
+  let mylist = JSON.parse(localStorage.getItem('mylist') || '{}');
+  delete mylist[title];
+  localStorage.setItem('mylist', JSON.stringify(mylist));
+}
+
+function showMylist() {
+  showSection('mylist');
+  const mylist = JSON.parse(localStorage.getItem('mylist') || '{}');
+  const mylistAreas = document.getElementById('mylist-areas');
+  mylistAreas.innerHTML = '';
+  Object.values(mylist).forEach(html => {
+    const div = document.createElement('div');
+    div.className = 'area-recommend-box';
+    div.innerHTML = html;
+    mylistAreas.appendChild(div);
+  });
+}
+
+const origShowSection = window.showSection;
+window.showSection = function(sectionId) {
+  origShowSection(sectionId);
+  if (sectionId === 'mylist') showMylist();
+};
 </script>
 
 </body>
