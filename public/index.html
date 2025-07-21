@@ -836,42 +836,76 @@
     </section>
 
     <!-- フロー5: 市町村詳細 -->
-    <section id="city-detail" class="flow-section">
-        <div class="container">
-            <div class="city-profile">
-                <div class="profile-main">
-                    <div class="profile-hero">
-                        <h2 id="cityTitle">🏔️ 生駒市 - 自然と都市の調和</h2>
-                    </div>
-                    <div class="profile-content">
-                        <p id="cityDescription">大阪まで35分、平均家族生活費18万円</p>
-                        
-                        <div class="tabs">
-                            <div class="tab active" onclick="showTab('education')">保育・教育</div>
-                            <div class="tab" onclick="showTab('housing')">住宅・費用</div>
-                            <div class="tab" onclick="showTab('community')">コミュニティ</div>
-                            <div class="tab" onclick="showTab('work')">仕事・交通</div>
-                        </div>
+<section id="city-detail" class="flow-section">
+  <div class="container">
+    <div class="city-profile">
+      <!-- メインプロフィール部分 -->
+      <div class="profile-main">
+        <div class="profile-hero">
+          <h2 id="cityTitle">🏔️ 生駒市 - 自然と都市の調和</h2>
+        </div>
+        <div class="profile-content">
+          <p id="cityDescription">大阪まで35分、平均家族生活費18万円</p>
 
-                        <div id="education-content" class="tab-content active">
-                            <h3>保育・教育</h3>
-                            <p>生駒市には質の高い保育施設と教育機関が揃っています。</p>
-                        </div>
+          <!-- タブメニュー -->
+          <div class="tabs">
+            <div class="tab active" onclick="showTab('education')">保育・教育</div>
+            <div class="tab" onclick="showTab('housing')">住宅・費用</div>
+            <div class="tab" onclick="showTab('community')">コミュニティ</div>
+            <div class="tab" onclick="showTab('work')">仕事・交通</div>
+          </div>
 
-                        <div id="housing-content" class="tab-content">
-                            <h3>住宅・費用</h3>
-                            <p>生駒市の住宅は比較的手頃で、自然環境も豊かです。</p>
-                        </div>
+          <!-- 各タブのコンテンツ -->
+          <div id="education-content" class="tab-content active">
+            <h3>保育・教育</h3>
+            <p>生駒市には質の高い保育施設と教育機関が揃っています。自然体験やIT教育も積極的に取り入れられています。</p>
+          </div>
 
-                        <div id="community-content" class="tab-content">
-                            <h3>コミュニティ</h3>
-                            <p>地域のイベントや活動が活発で、住民同士のつながりが強いです。</p>
-                        </div>
+          <div id="housing-content" class="tab-content">
+            <h3>住宅・費用</h3>
+            <p>生駒市の住宅は比較的手頃で、都市近郊ながらも自然に囲まれた環境が魅力です。平均家賃や住宅支援制度も充実しています。</p>
+          </div>
 
-                        <div id="work-content" class="tab-content">
-                            <h3>仕事・交通</h3>
-                            <p>大阪へのアクセスが良好で、通勤にも便利です。</p>
-                        </div>
+          <div id="community-content" class="tab-content">
+            <h3>コミュニティ</h3>
+            <p>地域のイベントや子育てサークルが活発で、子育て世代のつながりを大切にする雰囲気があります。外国人支援もあります。</p>
+          </div>
+
+          <div id="work-content" class="tab-content">
+            <h3>仕事・交通</h3>
+            <p>大阪・奈良へのアクセスが良好で、通勤に便利。駅周辺にはコワーキングスペースも整備され、リモートワークにも対応。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- サイドバー -->
+      <div class="profile-sidebar">
+        <div class="rating">
+          <h3>4.5/5</h3>
+          <p>家族に優しい地域</p>
+        </div>
+        <div class="action-buttons">
+          <button class="action-btn primary" onclick="showSection('region-overview')">地域概要を見る</button>
+          <button class="action-btn secondary" onclick="showSection('map-results')">地図結果に戻る</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="navigation">
+      <button class="back-btn" onclick="showSection('region-overview')">← 戻る</button>
+    </div>
+  </div>
+</section>
+
+<!-- スクリプト -->
+    <script>
+        // 初期表示
+        showSection('homepage');
+    </script>
+
+
+
 
 <script>
   // フローセクションを切り替える
@@ -1006,30 +1040,8 @@
       }, 1000);
   }
 </script>
-                    </div>
-                </div>
-                <div class="profile-sidebar">
-                    <div class="rating">
-                        <h3>4.5/5</h3>
-                        <p>家族に優しい地域</p>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="action-btn primary" onclick="showSection('region-overview')">地域概要を見る</button>
-                        <button class="action-btn secondary" onclick="showSection('map-results')">地図結果に戻る</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="navigation">
-                <button class="back-btn" onclick="showSection('region-overview')">戻る</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- スクリプト -->
-    <script>
-        // 初期表示
-        showSection('homepage');
-    </script>
 </body>
+
+
+
 </html>
