@@ -173,14 +173,14 @@
             z-index: 10;
         }
         
-        .kansai { top: 55%; left: 42%; width: 80px; height: 50px; }
-        .kanto { top: 30%; left: 55%; width: 80px; height: 50px; }
-        .kyushu { top: 75%; left: 25%; width: 70px; height: 50px; }
-        .hokkaido { top: 5%; left: 58%; width: 90px; height: 45px; }
-        .tohoku { top: 18%; left: 60%; width: 75px; height: 55px; }
-        .chubu { top: 40%; left: 48%; width: 75px; height: 50px; }
-        .chugoku { top: 62%; left: 32%; width: 75px; height: 45px; }
-        .shikoku { top: 70%; left: 40%; width: 65px; height: 40px; }
+        .kansai { top: 65%; left: 42%; width: 80px; height: 50px; }
+        .kanto { top: 70%; left: 55%; width: 80px; height: 50px; }
+        .kyushu { top: 75%; left: 15%; width: 70px; height: 50px; }
+        .hokkaido { top: 12%; left: 68%; width: 90px; height: 45px; }
+        .tohoku { top: 38%; left: 60%; width: 75px; height: 55px; }
+        .chubu { top: 50%; left: 48%; width: 75px; height: 50px; }
+        .chugoku { top: 62%; left: 28%; width: 75px; height: 45px; }
+        .shikoku { top: 80%; left: 38%; width: 65px; height: 40px; }
         
         .city-profile {
             display: grid;
@@ -797,25 +797,40 @@
           flex-direction: column;
           gap: 2rem;
         }
+
+        .yoko {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: row; /* ← ここが column から row に */
+            gap: 2rem;
+            }
         .area-recommend-box {
           display: flex;
-          align-items: center;
+          align-items: flex-start;         /* ← ここをflex-startに */
+          justify-content: space-between;
           background: #f8f9fa;
           border-radius: 16px;
           box-shadow: 0 2px 8px rgba(0,0,0,0.07);
           padding: 1.5rem;
-          gap: 2rem;
+          gap: 5px;
           transition: box-shadow 0.2s;
         }
         .area-recommend-box:hover {
           box-shadow: 0 6px 24px rgba(102,126,234,0.12);
         }
         .area-recommend-img {
-          width: 120px;
-          height: 90px;
+          width: 150px;
+          height: 120px;
           object-fit: cover;
           border-radius: 12px;
           flex-shrink: 0;
+        }
+        .area-recommend-img-sub {
+          width: 80px;
+          height: 64px;
+          object-fit: cover;
+          border-radius: 8px;
+          margin-left: 10px;
         }
         .area-recommend-desc h4 {
           margin: 0 0 0.5rem 0;
@@ -833,12 +848,149 @@
             align-items: flex-start;
             gap: 1rem;
           }
+          .area-recommend-box > div:not(.area-recommend-img):not(.favorite-star) {
+            width: 100%;
+            text-align: left !important;
+          }
           .area-recommend-img {
             width: 100%;
             height: 140px;
           }
         }
         
+        .city-detail-main {
+          display: flex;
+          gap: 2.5rem;
+          align-items: flex-start;
+          margin-top: 2rem;
+        }
+        .city-filter {
+          width: 240px;
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+          padding: 2rem 1.2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.1rem;
+          border: 1px solid #eee;
+          margin-bottom: 2rem;
+        }
+        .city-filter label {
+          display: flex;
+          align-items: center;
+          font-size: 1rem;
+          color: #222;
+          cursor: pointer;
+          gap: 0.7em;
+        }
+        .city-filter input[type="checkbox"] {
+          accent-color: #059669;
+          width: 1.2em;
+          height: 1.2em;
+        }
+        .city-detail-content {
+          flex: 1;
+          min-width: 0;
+        }
+        @media (max-width: 900px) {
+          .city-detail-main {
+            flex-direction: column;
+          }
+          .city-filter {
+            width: 100%;
+            margin-bottom: 2rem;
+          }
+        }
+        
+        .area-box-row {
+          display: flex;
+          align-items: flex-start;
+          background: #f8f9fa;
+          border-radius: 16px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+          padding: 1.5rem;
+          gap: 2.5rem;
+          margin-bottom: 2rem;
+        }
+        .area-filter {
+          width: 180px;
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+          padding: 1.2rem 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.1rem;
+          border: 1px solid #eee;
+        }
+        .area-filter label {
+          display: flex;
+          align-items: center;
+          font-size: 1rem;
+          color: #222;
+          cursor: pointer;
+          gap: 0.7em;
+        }
+        .area-filter input[type="checkbox"] {
+          accent-color: #059669;
+          width: 1.2em;
+          height: 1.2em;
+        }
+        .area-info {
+          display: flex;
+          align-items: flex-start;
+          gap: 1.5rem;
+        }
+        .area-img {
+          width: 100px;
+          height: 75px;
+          object-fit: cover;
+          border-radius: 10px;
+          flex-shrink: 0;
+        }
+        .area-title {
+          font-weight: bold;
+          font-size: 1.1rem;
+          margin-bottom: 0.3rem;
+        }
+        .area-desc {
+          color: #444;
+          font-size: 0.98rem;
+        }
+        .recommend-filter {
+          display: flex;
+          flex-direction: column;  /* 縦並び */
+          gap: 1.1rem;             /* 各チェックボックスの間隔 */
+        }
+        .recommend-filter label {
+          display: flex;
+          align-items: center;
+          font-size: 1rem;
+          color: #222;
+          cursor: pointer;
+          gap: 0.7em;
+        }
+        .recommend-filter input[type="checkbox"] {
+          accent-color: #059669;
+          width: 1.2em;
+          height: 1.2em;
+        }
+        .favorite-star.favorited {
+          color: #FFD700;
+        }
+        .area-title, .area-desc, .area-recommend-desc, .area-recommend-box > div, .area-recommend-box h4, .area-recommend-box p {
+          text-align: left;
+        }
+        .area-recommend-box, .area-recommend-box * {
+          text-align: left !important;
+        }
+        .area-recommend-box > div:not(.favorite-star) {
+          flex: 1;
+          align-self: flex-start;
+          margin-left: 5px;
+          text-align: left !important;
+        }
     </style>
 </head>
 <body>
@@ -997,6 +1149,10 @@
             <p>緑：非常におすすめ｜黄：おすすめ｜灰：その他</p>
             
             <div class="japan-map">
+                <!-- エリアdiv群 -->
+                <img src="japan.png" class="japan-map-bg" alt="日本地図"
+                     style="position:absolute; left:0; top:0; width:80%; height:100%; z-index:0; pointer-events:none; margin-left:80px;">
+                <!-- エリアdiv群はz-index:1で上に重ねる -->
                 <div class="region not-recommended hokkaido" onclick="selectRegion('hokkaido')" data-region="北海道">
                     北海道
                 </div>
@@ -1180,107 +1336,197 @@
 
 
 
-    <div class="city-profile">
-      <!-- メインプロフィール部分 -->
+    <div class="city-detail-main">
+      <!-- 左：フィルター -->
+      <!-- 右：詳細カード（既存のcity-profileや詳細カード） -->
+      <div class="city-detail-content">
+        <!-- ここに既存の詳細カードやエリアボックスを入れる -->
+        <div class="city-profile">
+          <!-- メインプロフィール部分 -->
 
 
 
-      <div class="profile-main">
-        <div class="profile-hero">
-          <h2 id="cityTitle">🏔️ 生駒市 - 自然と都市の調和</h2>
+          <div class="profile-main">
+            <div class="profile-hero">
+              <h2 id="cityTitle">🏔️ 生駒市 - 自然と都市の調和</h2>
+            </div>
+            <div class="profile-content">
+              <p id="cityDescription">大阪まで35分、平均家族生活費18万円</p>
+
+              <!-- タブメニュー -->
+              <div class="tabs">
+                <div class="tab active" onclick="showTab('education')">保育・教育</div>
+                <div class="tab" onclick="showTab('housing')">住宅・費用</div>
+                <div class="tab" onclick="showTab('community')">コミュニティ</div>
+                <div class="tab" onclick="showTab('work')">仕事・交通</div>
+              </div>
+
+              <!-- 各タブのコンテンツ -->
+              <div id="education-content" class="tab-content active">
+                <h3>保育・教育</h3>
+                <p>生駒市には質の高い保育施設と教育機関が揃っています。自然体験やIT教育も積極的に取り入れられています。</p>
+              </div>
+
+              <div id="housing-content" class="tab-content">
+                <h3>住宅・費用</h3>
+                <p>生駒市の住宅は比較的手頃で、都市近郊ながらも自然に囲まれた環境が魅力です。平均家賃や住宅支援制度も充実しています。</p>
+              </div>
+
+              <div id="community-content" class="tab-content">
+                <h3>コミュニティ</h3>
+                <p>地域のイベントや子育てサークルが活発で、子育て世代のつながりを大切にする雰囲気があります。外国人支援もあります。</p>
+              </div>
+
+              <div id="work-content" class="tab-content">
+                <h3>仕事・交通</h3>
+                <p>大阪・奈良へのアクセスが良好で、通勤に便利。駅周辺にはコワーキングスペースも整備され、リモートワークにも対応。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- サイドバー -->
+          <div class="profile-sidebar">
+            <div class="rating">
+              <h3>4.5/5</h3>
+              <p>家族に優しい地域</p>
+            </div>
+            <div class="action-buttons">
+              <button class="action-btn primary" onclick="showSection('region-overview')">地域概要を見る</button>
+              <button class="action-btn secondary" onclick="showSection('map-results')">地図結果に戻る</button>
+            </div>
+          </div>
         </div>
-        <div class="profile-content">
-          <p id="cityDescription">大阪まで35分、平均家族生活費18万円</p>
 
-          <!-- タブメニュー -->
-          <div class="tabs">
-            <div class="tab active" onclick="showTab('education')">保育・教育</div>
-            <div class="tab" onclick="showTab('housing')">住宅・費用</div>
-            <div class="tab" onclick="showTab('community')">コミュニティ</div>
-            <div class="tab" onclick="showTab('work')">仕事・交通</div>
-          </div>
 
-          <!-- 各タブのコンテンツ -->
-          <div id="education-content" class="tab-content active">
-            <h3>保育・教育</h3>
-            <p>生駒市には質の高い保育施設と教育機関が揃っています。自然体験やIT教育も積極的に取り入れられています。</p>
-          </div>
+        <div class="yoko">
+            <div class="recommend-filter">
+                <label><input type="checkbox" name="filter" value="都会"> 都会</label>
+                <label><input type="checkbox" name="filter" value="学校の評価が高い"> 学校の評価が高い</label>
+                <label><input type="checkbox" name="filter" value="生活コストが安い"> 生活コストが安い</label>
+                <label><input type="checkbox" name="filter" value="駅に近い"> 駅に近い</label>
+                <label><input type="checkbox" name="filter" value="安全"> 安全</label>
+                <label><input type="checkbox" name="filter" value="子育て支援あり"> 子育て支援あり</label>
+                <label><input type="checkbox" name="filter" value="コンビニが多い"> コンビニが多い</label>
+            </div>
+  
+            <div class="recommend-list">
+                    <div class="area-recommend-box">
+                    
+                    <img src="area1.jpg" class="area-recommend-img" alt="東生駒">
+                    <div>
+                        <div class="area-title">東生駒</div>
+                        <div class="area-desc">自然と利便性の両立。駅近で買い物も便利、子育て世帯に人気の住宅街。</div>
+                    </div>
+                
+                    <button class="favorite-star" aria-label="お気に入り">
+                        <span class="star-icon">&#9734;</span>
+                    </button>
+                    </div>
 
-          <div id="housing-content" class="tab-content">
-            <h3>住宅・費用</h3>
-            <p>生駒市の住宅は比較的手頃で、都市近郊ながらも自然に囲まれた環境が魅力です。平均家賃や住宅支援制度も充実しています。</p>
-          </div>
-
-          <div id="community-content" class="tab-content">
-            <h3>コミュニティ</h3>
-            <p>地域のイベントや子育てサークルが活発で、子育て世代のつながりを大切にする雰囲気があります。外国人支援もあります。</p>
-          </div>
-
-          <div id="work-content" class="tab-content">
-            <h3>仕事・交通</h3>
-            <p>大阪・奈良へのアクセスが良好で、通勤に便利。駅周辺にはコワーキングスペースも整備され、リモートワークにも対応。</p>
-          </div>
+                    <div class="area-recommend-box">
+                        <img src="area2.jpg" class="area-recommend-img" alt="白庭台">
+                        <div>
+                            <div class="area-title">高野原</div>
+                            <div class="area-desc">奈良市と京都府木津川市の境に位置。大型商業施設「イオン高の原」あり。</div>
+                        </div>  
+                        <button class="favorite-star" aria-label="お気に入り">
+                            <span class="star-icon">&#9734;</span>
+                        </button>                 
+                        </div>
+                    
+                    <div class="area-recommend-box">
+                    <img src="area3.jpg" class="area-recommend-img" alt="白庭台">
+                    <div>
+                        <div class="area-title">白庭台</div>
+                        <div class="area-desc">閑静な住宅街。緑が多く、落ち着いた環境で子育てに最適。</div>
+                    </div>    
+                    <button class="favorite-star" aria-label="お気に入り">
+                        <span class="star-icon">&#9734;</span>
+                    </button>               
+                    </div>
+                    
+                    <div class="area-recommend-box">
+                    <img src="area4.jpg" class="area-recommend-img" alt="南生駒">
+                    <div>
+                        <div class="area-title">南生駒</div>
+                        <div class="area-desc">教育環境が充実。学校や公園が近く、子どもがのびのび育つエリア。</div>
+                    </div>
+                    <button class="favorite-star" aria-label="お気に入り">
+                        <span class="star-icon">&#9734;</span>
+                    </button>                 
+                    </div>
+                    
+                    <div class="area-recommend-box">
+                    <img src="area5.jpg" class="area-recommend-img" alt="高山町">
+                    <div>
+                        <div class="area-title">高山町</div>
+                        <div class="area-desc">アウトドア好きに人気。自然豊かで週末は家族でアクティビティも楽しめる。</div>
+                    </div>  
+                    <button class="favorite-star" aria-label="お気に入り">
+                        <span class="star-icon">&#9734;</span>
+                    </button>                
+                    </div>
+                    
+                    <div class="area-recommend-box">
+                    <img src="area6.jpg" class="area-recommend-img" alt="高山町">
+                    <div>
+                        <div class="area-title">学園前</div>
+                        <div class="area-desc">近鉄奈良線で大阪難波まで約30分。学園南・登美ヶ丘エリアは街路も広く整備されている。</div>
+                    </div>
+                    <button class="favorite-star" aria-label="お気に入り">
+                        <span class="star-icon">&#9734;</span>
+                    </button>
+                    </div>
+                
+                    <div class="area-recommend-box">
+                    <img src="area7.jpg" class="area-recommend-img" alt="高山町">
+                    <div>
+                        <div class="area-title">富雄</div>
+                        <div class="area-desc">住宅価格は学園前より少し抑えめで、若い家族層にも人気。通勤・通学の便を重視する人。</div>
+                    </div>
+                    <button class="favorite-star" aria-label="お気に入り">
+                        <span class="star-icon">&#9734;</span>
+                    </button>
+                    </div>
+                
+                    <div class="area-recommend-box">
+                    <img src="area8.jpg" class="area-recommend-img" alt="高山町">
+                    <div>
+                        <div class="area-title">登美ヶ丘</div>
+                        <div class="area-desc">学園前のさらに西に広がる新興住宅地で、街全体がきれいに整備されています。</div>
+                    </div>
+                    <button class="favorite-star" aria-label="お気に入り">
+                        <span class="star-icon">&#9734;</span>
+                    </button>
+                    </div>
+                    
+                    <div class="area-recommend-box">
+                    <img src="area9.jpg" class="area-recommend-img" alt="高山町">
+                    <div>
+                        <div class="area-title">京終</div>
+                        <div class="area-desc">最近のリノベーションでおしゃれなカフェや店舗も増加。隠れた人気エリア。</div>
+                    </div>
+                    <button class="favorite-star" aria-label="お気に入り">
+                        <span class="star-icon">&#9734;</span>
+                    </button>
+                    </div>
+            </div>
         </div>
-      </div>
 
-      <!-- サイドバー -->
-      <div class="profile-sidebar">
-        <div class="rating">
-          <h3>4.5/5</h3>
-          <p>家族に優しい地域</p>
-        </div>
-        <div class="action-buttons">
-          <button class="action-btn primary" onclick="showSection('region-overview')">地域概要を見る</button>
-          <button class="action-btn secondary" onclick="showSection('map-results')">地図結果に戻る</button>
-        </div>
+    </div>
+   
+
+
+
+
+        <!-- ナビゲーション
+        <div class="navigation">
+          <button class="back-btn" onclick="showSection('region-overview')">← 戻る</button>
+        </div> -->
       </div>
     </div>
 
-    <div class="area-recommend-list">
-      <div class="area-recommend-box">
-        <img src="area1.jpg" class="area-recommend-img" alt="エリア1">
-        <div class="area-recommend-desc">
-          <h4>東生駒</h4>
-          <p>自然と利便性の両立。駅近で買い物も便利、子育て世帯に人気の住宅街。</p>
-        </div>
-      </div>
-      <div class="area-recommend-box">
-        <img src="area2.jpg" class="area-recommend-img" alt="エリア2">
-        <div class="area-recommend-desc">
-          <h4>生駒駅周辺</h4>
-          <p>交通至便・商業施設充実。通勤・通学に便利で生活利便性が高い。</p>
-        </div>
-      </div>
-      <div class="area-recommend-box">
-        <img src="area3.jpg" class="area-recommend-img" alt="エリア3">
-        <div class="area-recommend-desc">
-          <h4>白庭台</h4>
-          <p>閑静な住宅街。緑が多く、落ち着いた環境で子育てに最適。</p>
-        </div>
-      </div>
-      <div class="area-recommend-box">
-        <img src="area4.jpg" class="area-recommend-img" alt="エリア4">
-        <div class="area-recommend-desc">
-          <h4>南生駒</h4>
-          <p>教育環境が充実。学校や公園が近く、子どもがのびのび育つエリア。</p>
-        </div>
-      </div>
-      <div class="area-recommend-box">
-        <img src="area5.jpg" class="area-recommend-img" alt="エリア5">
-        <div class="area-recommend-desc">
-          <h4>高山町</h4>
-          <p>アウトドア好きに人気。自然豊かで週末は家族でアクティビティも楽しめる。</p>
-        </div>
-      </div>
-    </div>
 
-
-
-
-    <!-- ナビゲーション -->
-    <div class="navigation">
-      <button class="back-btn" onclick="showSection('region-overview')">← 戻る</button>
-    </div>
   </div>
 </section>
 
@@ -1581,6 +1827,39 @@
   });
 </script>
 
+<script>
+document.querySelectorAll('.recommend-filter input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', shuffleRecommendList);
+});
+
+function shuffleRecommendList() {
+  const list = document.querySelector('.recommend-list');
+  if (!list) return;
+  // 子要素（エリアボックス）を配列に
+  const items = Array.from(list.children);
+  // Fisher-Yatesシャッフル
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  // 並び替え
+  items.forEach(item => list.appendChild(item));
+}
+</script>
+
+<script>
+document.querySelectorAll('.favorite-star').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.classList.toggle('favorited');
+    const star = this.querySelector('.star-icon');
+    if (this.classList.contains('favorited')) {
+      star.innerHTML = '★';
+    } else {
+      star.innerHTML = '☆';
+    }
+  });
+});
+</script>
 
 </body>
 
