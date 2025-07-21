@@ -587,6 +587,178 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .main-content {
+            display: flex;
+            min-height: 600px;
+        }
+
+        .map-container {
+            flex: 1;
+            padding: 30px;
+            position: relative;
+            background: #f8f9fa;
+        }
+
+        .map {
+            width: 100%;
+            height: 500px;
+            background: #e9ecef;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .area {
+            position: absolute;
+            background: rgba(74, 144, 226, 0.3);
+            border: 3px solid #4a90e2;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .area:hover {
+            background: rgba(74, 144, 226, 0.5);
+            border-color: #2980b9;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.3);
+        }
+
+        .area.selected {
+            background: rgba(231, 76, 60, 0.4);
+            border-color: #e74c3c;
+            transform: scale(1.2);
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(231, 76, 60, 0.4);
+        }
+
+        .info-panel {
+            width: 400px;
+            background: white;
+            border-left: 1px solid #e9ecef;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .info-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .info-content.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .info-image:hover {
+            transform: scale(1.02);
+        }
+
+        .info-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .info-description {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .info-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4a90e2;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .default-message {
+            text-align: center;
+            color: #888;
+            font-size: 1.1rem;
+            margin-top: 100px;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(74, 144, 226, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(74, 144, 226, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .info-panel {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #e9ecef;
+            }
+            
+            .map {
+                height: 400px;
+                 padding-left: 40%;
+            }
+
+            
+        }
+
+
+        
     </style>
 </head>
 <body>
@@ -835,6 +1007,78 @@
         </div>
     </section>
 
+
+<section id ="prefecture-detail" class="flow-section">
+        <div class="container">
+        <!-- <div class="header">
+            <h1>🗺️ インタラクティブマップ</h1>
+            <p>エリアをクリックして詳細情報を表示</p>
+        </div> -->
+        
+        <div class="main-content">
+            <div class="map-container">
+                <div class="map" id="map"style="
+                    background-image: url('map-nara.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    border-radius: 15px;
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+                    width: 100%;
+                    height: 500px;
+                ">
+                    <div class="area pulse" data-area="tokyo" style="top: 20%; left: 40%; width: 120px; height: 80px;">
+                        奈良市（A＋）
+                    </div>
+                    <div class="area" data-area="osaka" style="top: 45%; left: 30%; width: 100px; height: 70px;">
+                        五條市（B）
+                    </div>
+                    <div class="area" data-area="kyoto" style="top: 40%; left: 45%; width: 90px; height: 60px;">
+                        吉野町（A）
+                    </div>
+                    <div class="area" data-area="yokohama" style="top: 30%; left: 55%; width: 110px; height: 75px;">
+                        宇陀市（S）
+                    </div>
+                    <div class="area" data-area="nagoya" style="top: 55%; left: 40%; width: 95px; height: 65px;">
+                        天川村（B＋）
+                    </div>
+                    <div class="area" data-area="fukuoka" style="top: 70%; left: 25%; width: 100px; height: 70px;">
+                        十津川村（B）
+                    </div>
+
+
+                </div>
+            </div>
+            
+            <div class="info-panel">
+                <div class="info-content" id="info-content">
+                    <div class="default-message">
+                        <p>マップ上のエリアを選択してください</p>
+                        <p>📍 クリックすると詳細情報が表示されます</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    </section>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- フロー5: 市町村詳細 -->
 <section id="city-detail" class="flow-section">
   <div class="container">
@@ -991,8 +1235,9 @@
 
       document.getElementById('cityTitle').textContent = names[pref] || '市町村情報';
       document.getElementById('cityDescription').textContent = desc[pref] || '';
-      showSection('city-detail');
+      showSection('prefecture-detail');
   }
+
 
   // タブ切り替え
   function showTab(tabId) {
@@ -1039,7 +1284,139 @@
           chatMessages.scrollTop = chatMessages.scrollHeight;
       }, 1000);
   }
+
+
+
+
+
+  const areas = document.querySelectorAll('.area');
+        const infoContent = document.getElementById('info-content');
+            const areaData = {
+            tokyo: {
+                name: '奈良市（A＋）',
+                image: 'narasi.png',
+                description: '奈良県の県庁所在地であり、東大寺や興福寺など世界遺産が集まる歴史都市。古都としての魅力と便利な都市機能を併せ持つ。',
+                population: '35万人',
+                area: '277 km²',
+                famous: '東大寺、奈良公園、春日大社',
+                specialty: '柿の葉寿司、奈良漬'
+            },
+            osaka: {
+                name: '五條市（B)',
+                image: 'gojousi.png',
+                description: '奈良県の南西部に位置し、吉野川の恵みを受けた自然豊かな地域。古くからの宿場町としての歴史も残る。',
+                population: '2.5万人',
+                area: '292 km²',
+                famous: '五新鉄道跡、吉野川',
+                specialty: '柿、鮎料理'
+            },
+            kyoto: {
+                name: '吉野町（A)',
+                image: 'yosinosi.png',
+                description: '桜の名所「吉野山」で知られ、春には国内外から多くの観光客が訪れる。世界遺産や修験道の聖地でもある。',
+                population: '6,000人',
+                area: '95 km²',
+                famous: '吉野山、金峯山寺',
+                specialty: '柿の葉寿司、葛菓子'
+            },
+            yokohama: {
+                name: '宇陀市（S)',
+                image: 'udasi.png',
+                description: '大和高原の自然に囲まれた地域で、古くから薬草栽培が盛ん。古民家や棚田の風景が残る落ち着いたまち。',
+                population: '2.5万人',
+                area: '247 km²',
+                famous: '室生寺、大宇陀温泉',
+                specialty: '薬草料理、宇陀牛'
+            },
+            nagoya: {
+                name: '天川村（B)',
+                image: 'tenkawamura.png',
+                description: '吉野郡にある山間の村で、修験道の中心地・大峯山を有する。清流と温泉が魅力で、夏の避暑地として人気。',
+                population: '1,200人',
+                area: '175 km²',
+                famous: '大峯山、みたらい渓谷',
+                specialty: '川魚料理、山菜'
+            },
+            fukuoka: {
+                name: '十津川村（B）',
+                image: 'totukawa.png',
+                description: '日本一広い村であり、自然豊かな山間地に位置する。吊り橋や秘湯が多く、アウトドア・温泉好きに人気。',
+                population: '3,000人',
+                area: '672 km²',
+                famous: '谷瀬の吊り橋、玉置神社',
+                specialty: 'ぼたん鍋、柚子製品'
+            }
+        };
+
+
+        areas.forEach(area => {
+            area.addEventListener('click', function() {
+                // 他のエリアの選択状態を解除
+                areas.forEach(a => a.classList.remove('selected'));
+                
+                // クリックしたエリアを選択状態に
+                this.classList.add('selected');
+                
+                // 情報パネルを更新
+                const areaKey = this.dataset.area;
+                const data = areaData[areaKey];
+                
+                infoContent.classList.remove('show');
+                
+                setTimeout(() => {
+                    infoContent.innerHTML = `
+                        <div class="info-image" style="background-image: url('${data.image}')"></div>
+                        <h2 class="info-title">${data.name}</h2>
+                        <p class="info-description">${data.description}</p>
+                        <div class="info-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">${data.population}</div>
+                                <div class="stat-label">人口</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${data.area}</div>
+                                <div class="stat-label">面積</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${data.famous}</div>
+                                <div class="stat-label">名所</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${data.specialty}</div>
+                                <div class="stat-label">名物</div>
+                            </div>
+                        </div>
+                        <button class="cta-button" style="margin-top: 20px; width: 100%;" onclick="showSection('city-detail')">詳細を見る</button>
+                    `;
+                    infoContent.classList.add('show');
+                }, 200);
+            });
+        });
+
+        // マップ外をクリックした時の処理
+        document.getElementById('map').addEventListener('click', function(e) {
+            if (e.target === this) {
+                areas.forEach(a => a.classList.remove('selected'));
+                infoContent.classList.remove('show');
+                
+                setTimeout(() => {
+                    infoContent.innerHTML = `
+                        <div class="default-message">
+                            <p>マップ上のエリアを選択してください</p>
+                            <p>📍 クリックすると詳細情報が表示されます</p>
+                        </div>
+                    `;
+                }, 200);
+            }
+        });
+   
 </script>
+
+
+
+
+
+
 </body>
 
 
