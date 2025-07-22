@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Life Japan - 子育てに最適な場所を見つけよう</title>
+    <title>Totono Life - 子育てに最適な場所を見つけよう</title>
     <style>
         * {
             margin: 0;
@@ -591,18 +591,20 @@
         .main-content {
             display: flex;
             min-height: 600px;
+            gap: 2.5rem;
         }
 
         .map-container {
-            flex: 1;
-            padding: 30px;
+            flex: 0 0 340px;
+            max-width: 340px;
+            padding: 20px;
             position: relative;
             background: #f8f9fa;
         }
 
         .map {
             width: 100%;
-            height: 500px;
+            height: 400px;
             background: #e9ecef;
             border-radius: 15px;
             position: relative;
@@ -641,7 +643,9 @@
         }
 
         .info-panel {
-            width: 400px;
+            flex: 1 1 0%;
+            width: auto;
+            max-width: 700px;
             background: white;
             border-left: 1px solid #e9ecef;
             padding: 30px;
@@ -738,23 +742,18 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .main-content {
                 flex-direction: column;
+                gap: 1.5rem;
             }
-            
-            .info-panel {
+            .map-container, .info-panel {
+                max-width: 100%;
                 width: 100%;
-                border-left: none;
-                border-top: 1px solid #e9ecef;
             }
-            
             .map {
-                height: 400px;
-                 padding-left: 40%;
+                height: 300px;
             }
-
-            
         }
 
         .gallery-wrapper {
@@ -1043,6 +1042,27 @@
           text-align: left !important;
         }
 
+        .area.rank-s {
+          border: 3px solid #FF6B6B;
+          background: rgba(255,107,107,0.8);
+          color: #000000;
+        }
+        .area.rank-aplus {
+          border: 3px solid #FFA500;
+          background: rgba(255,165,0,0.8);
+          color: #000000;
+        }
+        .area.rank-bplus {
+          border: 3px solid #3498db;
+          background: rgba(52,152,219,0.8);
+          color: #000000;
+        }
+        .area.rank-b {
+            border: 3px solid #3498db;
+          background: rgba(52,152,219,0.8);
+          color: #000000;
+        }
+
     </style>
 </head>
 <body>
@@ -1087,7 +1107,7 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div style="display: flex; align-items: center; gap: 1rem;">
                     <img src="logo.png" alt="Family Life Japan ロゴ" style="height: 60px; width: auto; display: block;">
-                    <h2 style="margin: 0;">Family Life Japan</h2>
+                    <!-- <h2 style="margin: 0;">TotonoLife</h2> -->
                 </div>
                 <div>
                     <button class="ai-chat-button" onclick="toggleChat()">🤖 AIに相談</button>
@@ -1318,25 +1338,25 @@
                     position: relative;
                     overflow: hidden;
                     box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
-                    width: 100%;
+                    width: 70%;
                     height: 500px;
                 ">
-                    <div class="area pulse" data-area="tokyo" style="top: 20%; left: 40%; width: 120px; height: 80px;">
+                    <div class="area rank-aplus" data-area="tokyo" style="top: 20%; left: 40%; width: 120px; height: 80px;">
                         奈良市（A＋）
                     </div>
-                    <div class="area" data-area="osaka" style="top: 45%; left: 30%; width: 100px; height: 70px;">
+                    <div class="area rank-s" data-area="osaka" style="top: 45%; left: 30%; width: 100px; height: 70px;">
                         五條市（B）
                     </div>
-                    <div class="area" data-area="kyoto" style="top: 40%; left: 45%; width: 90px; height: 60px;">
+                    <div class="area rank-aplus" data-area="kyoto" style="top: 40%; left: 45%; width: 90px; height: 60px;">
                         吉野町（A＋）
                     </div>
-                    <div class="area" data-area="yokohama" style="top: 30%; left: 55%; width: 110px; height: 75px;">
+                    <div class="area rank-b" data-area="yokohama" style="top: 30%; left: 55%; width: 110px; height: 75px;">
                         宇陀市（S）
                     </div>
-                    <div class="area" data-area="nagoya" style="top: 55%; left: 40%; width: 95px; height: 65px;">
+                    <div class="area rank-bplus" data-area="nagoya" style="top: 55%; left: 40%; width: 95px; height: 65px;">
                         天川村（B＋）
                     </div>
-                    <div class="area" data-area="fukuoka" style="top: 70%; left: 25%; width: 100px; height: 70px;">
+                    <div class="area rank-b" data-area="fukuoka" style="top: 70%; left: 25%; width: 100px; height: 70px;">
                         十津川村（B）
                     </div>
 
