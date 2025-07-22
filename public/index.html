@@ -813,17 +813,32 @@
             }
         .area-recommend-box {
           display: flex;
-          align-items: flex-start;         /* ← ここをflex-startに */
-          justify-content: space-between;
-          background: #f8f9fa;
-          border-radius: 16px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-          padding: 1.5rem;
-          gap: 5px;
-          transition: box-shadow 0.2s;
+          align-items: center;
+          gap: 1.5rem;
+          background: #fafbfc;
+          border-radius: 18px;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+          padding: 1.2rem 2rem;
+          margin-bottom: 2rem;
+          position: relative;
         }
-        .area-recommend-box:hover {
-          box-shadow: 0 6px 24px rgba(102,126,234,0.12);
+        .area-info {
+          flex: 1;
+        }
+        .chat-btn {
+          background: linear-gradient(135deg, #00c3ff 0%, #ffff1c 100%);
+          color: #222;
+          border: none;
+          border-radius: 20px;
+          padding: 0.7rem 1.4rem;
+          font-size: 1rem;
+          font-weight: bold;
+          cursor: pointer;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          transition: background 0.2s;
+        }
+        .chat-btn:hover {
+          background: linear-gradient(135deg, #ffff1c 0%, #00c3ff 100%);
         }
         .area-recommend-img {
           width: 150px;
@@ -1100,6 +1115,249 @@
           overflow-y: auto;
         }
 
+        .search-bar-container {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin: 2rem 0 1.5rem 0;
+        }
+        .search-bar {
+          display: flex;
+          align-items: center;
+          background: #fff;
+          border: 1.5px solid #ccc;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+          padding: 0.5rem 1rem;
+          gap: 0.7rem;
+          min-width: 320px;
+          max-width: 500px;
+          width: 100%;
+          margin: 0 1.5rem;
+        }
+        .search-label {
+          color: #222;
+          font-size: 1.1rem;
+        }
+        .search-input, .search-area-input {
+          border: none;
+          outline: none;
+          font-size: 1.1rem;
+          background: transparent;
+          flex: 1;
+          min-width: 80px;
+        }
+        .search-input::placeholder, .search-area-input::placeholder {
+          color: #aaa;
+        }
+        .search-icon, .search-location-icon {
+          font-size: 1.2rem;
+          color: #1a4d3a;
+          margin: 0 0.2rem;
+        }
+        @media (max-width: 900px) {
+          .search-bar {
+            min-width: 180px;
+            max-width: 100%;
+            margin: 0 0.5rem;
+            font-size: 0.95rem;
+            padding: 0.3rem 0.5rem;
+          }
+          .search-label {
+            font-size: 0.95rem;
+          }
+        }
+
+        .mylist-dropdown {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 4px 24px rgba(102,126,234,0.13);
+          z-index: 3000;
+          min-width: 180px;
+          padding: 0.5rem 0;
+          border: 1.5px solid #e9ecef;
+        }
+        .mylist-dropdown-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+        .mylist-dropdown-list li {
+          margin: 0;
+          padding: 0;
+        }
+        .mylist-dropdown-list button {
+          width: 100%;
+          background: none;
+          border: none;
+          padding: 0.9rem 1.2rem;
+          text-align: left;
+          font-size: 1.08rem;
+          color: #333;
+          cursor: pointer;
+          transition: background 0.18s;
+        }
+        .mylist-dropdown-list button:hover {
+          background: #f0f3ff;
+          color: #667eea;
+        }
+
+        .map-ad-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 2rem;
+          margin: 0 auto;
+          max-width: 1400px;
+        }
+        .ad {
+          width: 220px;
+          min-width: 180px;
+          text-align: center;
+          padding-top: 30px;
+        }
+        @media (max-width: 900px) {
+          .map-ad-wrapper {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+          }
+          .ad {
+            width: 100%;
+            min-width: 0;
+          }
+        }
+
+        .area-compare-table-wrapper {
+          margin-top: 2.5rem;
+          overflow-x: auto;
+        }
+        .area-compare-table {
+          border-collapse: collapse;
+          width: 100%;
+          min-width: 700px;
+          background: #fff;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .area-compare-table th, .area-compare-table td {
+          border: 1px solid #e0e0e0;
+          padding: 0.7rem 0.5rem;
+          text-align: center;
+          font-size: 1rem;
+        }
+        .area-compare-table th {
+          background: #f8f9fa;
+          font-weight: bold;
+        }
+        .compare-img {
+          width: 80px;
+          height: 60px;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+
+        .grade-a {
+          color: #e74c3c;
+          font-weight: bold;
+          font-size: 1.1em;
+        }
+        .grade-b {
+          color: #3498db;
+          font-weight: bold;
+          font-size: 1.1em;
+        }
+        .grade-bm {
+          color: #f1c40f;
+          font-weight: bold;
+          font-size: 1.1em;
+        }
+
+        .chat-modal {
+          display: none;
+          position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: rgba(0,0,0,0.25);
+          z-index: 1000;
+          justify-content: center;
+          align-items: center;
+        }
+        .chat-modal.active {
+          display: flex;
+        }
+        .chat-modal-content {
+          background: #fff;
+          border-radius: 18px;
+          width: 95vw;
+          max-width: 420px;
+          min-height: 420px;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+          animation: fadeInUp 0.3s;
+        }
+        .chat-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 1.2rem;
+          border-bottom: 1px solid #eee;
+          font-weight: bold;
+          font-size: 1.1rem;
+          background: #f7faff;
+          border-radius: 18px 18px 0 0;
+        }
+        .chat-close-btn {
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: #888;
+        }
+        .chat-messages {
+          flex: 1;
+          padding: 1.2rem;
+          overflow-y: auto;
+          background: #f4f8fb;
+          display: flex;
+          flex-direction: column;
+          gap: 0.7rem;
+        }
+        .chat-message {
+          max-width: 80%;
+          padding: 0.7rem 1.1rem;
+          border-radius: 18px;
+          font-size: 1rem;
+          line-height: 1.5;
+          word-break: break-all;
+        }
+        .chat-message.user {
+          align-self: flex-end;
+          background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        .chat-message.other {
+          align-self: flex-start;
+          background: #fff;
+          border: 1px solid #e0e0e0;
+        }
+        .chat-input-area {
+          display: flex;
+          gap: 0.5rem;
+          padding: 1rem;
+          border-top: 1px solid #eee;
+          background: #f7faff;
+          border-radius: 0 0 18px 18px;
+        }
+        #chat-input {
+          flex: 1;
+          padding: 0.7rem 1rem;
+          border-radius: 16px;
+          border: 1px solid #ccc;
+          font-size: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -1143,12 +1401,36 @@
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div style="display: flex; align-items: center; gap: 1rem;">
-                    <img src="logo.png" alt="Family Life Japan ロゴ" style="height: 60px; width: auto; display: block;">
+                    <img src="logo.png" alt="Family Life Japan ロゴ" style="height: 60px; width: auto; display: block; cursor:pointer;" onclick="showSection('homepage')">
                     <!-- <h2 style="margin: 0;">TotonoLife</h2> -->
+                </div>
+                <!-- 検索バー -->
+                <div class="search-bar">
+                    <span class="search-label"><b>Find</b></span>
+                    <input type="text" class="search-input" placeholder="a town, neighborhood, ZIP ..." />
+                    <span class="search-icon">🔍</span>
+                    <span class="search-label"><b>In</b></span>
+                    <input type="text" class="search-area-input" placeholder="エリア名を入力" value="奈良エリア" />
+                    <span class="search-location-icon">📍</span>
                 </div>
                 <div>
                     <button class="ai-chat-button" onclick="toggleChat()">🤖 AIに相談</button>
-                    <button class="mylist-button" onclick="showSection('mylist')">Mylist</button>
+                    <div style="display:inline-block; position:relative;">
+                      <button class="mylist-button" onclick="toggleMylistDropdown(event)">Mylist</button>
+                      <div id="mylist-dropdown" class="mylist-dropdown" style="display:none;">
+                        <ul class="mylist-dropdown-list">
+                          <li><button onclick="openMylistTab('favorite')">Favorite</button></li>
+                          <li><button onclick="openMylistTab('plan')">My plan</button></li>
+                          <li><button onclick="openMylistTab('signin')">Sign in</button></li>
+                          <li><button onclick="openMylistTab('signout')">Sign out</button></li>
+                          <li><button onclick="openMylistTab('settings')">Settings</button></li>
+                          <li><button onclick="openMylistTab('help')">Help</button></li>
+                          <li><button onclick="openMylistTab('contact')">Contact</button></li>
+                          <li><button onclick="openMylistTab('about')">About</button></li>
+                          <li><button onclick="openMylistTab('logout')">Logout</button></li>
+                        </ul>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1260,38 +1542,46 @@
         <div class="container">
             <h2>あなたの家族におすすめの地域</h2>
             <p>緑：非常におすすめ｜黄：おすすめ｜灰：その他</p>
-            
-            <div class="japan-map">
-                <!-- エリアdiv群 -->
-                <img src="japan.png" class="japan-map-bg" alt="日本地図"
-                     style="position:absolute; left:0; top:0; width:80%; height:100%; z-index:0; pointer-events:none; margin-left:80px;">
-                <!-- エリアdiv群はz-index:1で上に重ねる -->
-                <div class="region not-recommended hokkaido" onclick="selectRegion('hokkaido')" data-region="北海道">
-                    北海道
+            <div class="map-ad-wrapper">
+              <div class="ad ad-left">
+                <img src="ad-left.png" alt="広告" style="width:200px; max-width:100%;">
+              </div>
+              <div style="flex:1; display:flex; justify-content:center;">
+                <!-- 元の日本地図と地方情報は絶対にそのまま -->
+                <div class="japan-map">
+                  <img src="japan.png" class="japan-map-bg" alt="日本地図"
+                       style="position:absolute; left:0; top:0; width:80%; height:100%; z-index:0; pointer-events:none; margin-left:80px;">
+                  <!-- エリアdiv群はz-index:1で上に重ねる -->
+                  <div class="region not-recommended hokkaido" onclick="selectRegion('hokkaido')" data-region="北海道">
+                      北海道
+                  </div>
+                  <div class="region not-recommended tohoku" onclick="selectRegion('tohoku')" data-region="東北地方">
+                      東北地方
+                  </div>
+                  <div class="region good kanto" onclick="selectRegion('kanto')" data-region="関東地方">
+                      関東地方
+                  </div>
+                  <div class="region not-recommended chubu" onclick="selectRegion('chubu')" data-region="中部地方">
+                      中部地方
+                  </div>
+                  <div class="region recommended kansai" onclick="selectRegion('kansai')" data-region="関西地方">
+                      関西地方
+                  </div>
+                  <div class="region not-recommended chugoku" onclick="selectRegion('chugoku')" data-region="中国地方">
+                      中国地方
+                  </div>
+                  <div class="region not-recommended shikoku" onclick="selectRegion('shikoku')" data-region="四国地方">
+                      四国地方
+                  </div>
+                  <div class="region good kyushu" onclick="selectRegion('kyushu')" data-region="九州地方">
+                      九州地方
+                  </div>
                 </div>
-                <div class="region not-recommended tohoku" onclick="selectRegion('tohoku')" data-region="東北地方">
-                    東北地方
-                </div>
-                <div class="region good kanto" onclick="selectRegion('kanto')" data-region="関東地方">
-                    関東地方
-                </div>
-                <div class="region not-recommended chubu" onclick="selectRegion('chubu')" data-region="中部地方">
-                    中部地方
-                </div>
-                <div class="region recommended kansai" onclick="selectRegion('kansai')" data-region="関西地方">
-                    関西地方
-                </div>
-                <div class="region not-recommended chugoku" onclick="selectRegion('chugoku')" data-region="中国地方">
-                    中国地方
-                </div>
-                <div class="region not-recommended shikoku" onclick="selectRegion('shikoku')" data-region="四国地方">
-                    四国地方
-                </div>
-                <div class="region good kyushu" onclick="selectRegion('kyushu')" data-region="九州地方">
-                    九州地方
-                </div>
+              </div>
+              <div class="ad ad-right">
+                <img src="ad-right.png" alt="広告" style="width:200px; max-width:100%;">
+              </div>
             </div>
-
             <div class="navigation">
                 <button class="back-btn" onclick="showSection('survey')">戻る</button>
             </div>
@@ -1435,7 +1725,14 @@
     <div class="gallery-wrapper">
         <div class="gallery" id="cityGallery">
           <img src="ikoma1.jpg" class="gallery-img" />
-          <img src="ikoma2.jpg" class="gallery-img" />
+          <iframe width="300" height="200"
+            src="https://www.youtube.com/embed/ZXpVc8MxR44?si=OCCrJ9Ah_tOMzDLy"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            style="border-radius:12px; margin-right:20px;"></iframe>
           <img src="ikoma3.jpg" class="gallery-img" />
           <img src="ikoma4.jpg" class="gallery-img" />
           <img src="ikoma5.jpg" class="gallery-img" />
@@ -1523,7 +1820,7 @@
             </div>
   
             <div class="recommend-list">
-                    <div class="area-recommend-box">
+                    <div class="area-recommend-box" data-area-id="higashiikoma" onclick="showAreaDetail('higashiikoma')">
                     
                     <img src="area1.jpg" class="area-recommend-img" alt="東生駒">
                     <div>
@@ -1660,8 +1957,8 @@
       const target = document.getElementById(sectionId);
       if (target) {
           target.classList.add('active');
-          // city-detailを表示したときだけページトップに戻す
-          if (sectionId === 'city-detail') {
+          // city-detailやhigashiikoma-detailを表示したときだけページトップに戻す
+          if (sectionId === 'city-detail' || sectionId === 'higashiikoma-detail') {
               window.scrollTo({ top: 0, behavior: 'auto' });
           }
       }
@@ -1989,32 +2286,96 @@ document.querySelectorAll('.favorite-star').forEach(btn => {
   <div class="container">
     <h2>Mylist（お気に入りエリア）</h2>
     <div id="mylist-areas">
-      <div class="area-recommend-box">
+      <div class="area-recommend-box" data-area="gakuenmae">
         <img src="area6.jpg" class="area-recommend-img" alt="学園前">
-        <div>
+        <div class="area-info">
           <div class="area-title">学園前</div>
           <div class="area-desc">近鉄奈良線で大阪難波まで約30分。学園南・登美ヶ丘エリアは街路も広く整備されている。</div>
         </div>
+        <button class="chat-btn" onclick="openChatRoom('gakuenmae')">オープンチャット</button>
       </div>
-      <div class="area-recommend-box">
+      <div class="area-recommend-box" data-area="takayamacho">
         <img src="area5.jpg" class="area-recommend-img" alt="高山町">
-        <div>
+        <div class="area-info">
           <div class="area-title">高山町</div>
           <div class="area-desc">アウトドア好きに人気。自然豊かで週末は家族でアクティビティも楽しめる。</div>
         </div>
+        <button class="chat-btn" onclick="openChatRoom('takayamacho')">オープンチャット</button>
       </div>
-      <div class="area-recommend-box">
+      <div class="area-recommend-box" data-area="minamiikoma">
         <img src="area4.jpg" class="area-recommend-img" alt="南生駒">
-        <div>
+        <div class="area-info">
           <div class="area-title">南生駒</div>
           <div class="area-desc">教育環境が充実。学校や公園が近く、子どもがのびのび育つエリア。</div>
         </div>
+        <button class="chat-btn" onclick="openChatRoom('minamiikoma')">オープンチャット</button>
       </div>
     </div>
-    <button class="back-btn" onclick="showSection('city-detail')">← 戻る</button>
+    
+    <!-- エリア比較表を追加 -->
+    <div class="area-compare-table-wrapper">
+      <h3 style="margin-bottom: 1rem;">エリア比較</h3>
+      <table class="area-compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>東生駒</th>
+            <th>高山町</th>
+            <th>学園前</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>総合評価</td>
+            <td><span class="grade-a">A</span></td>
+            <td><span class="grade-b">B</span></td>
+            <td><span class="grade-bm">B-</span></td>
+          </tr>
+          <tr>
+            <td>特徴</td>
+            <td>駅近・利便性・子育て世帯に人気</td>
+            <td>自然豊か・アウトドア・週末アクティビティ</td>
+            <td>大阪アクセス良・街路整備・教育環境</td>
+          </tr>
+          <tr>
+            <td>平均家賃</td>
+            <td>7.5万円</td>
+            <td>6.2万円</td>
+            <td>8.1万円</td>
+          </tr>
+          <tr>
+            <td>学校の評価</td>
+            <td>★★★★☆</td>
+            <td>★★★☆☆</td>
+            <td>★★★★★</td>
+          </tr>
+          <tr>
+            <td>自然環境</td>
+            <td>★★★☆☆</td>
+            <td>★★★★★</td>
+            <td>★★★☆☆</td>
+          </tr>
+          <tr>
+            <td>買い物利便性</td>
+            <td>★★★★★</td>
+            <td>★★★☆☆</td>
+            <td>★★★★☆</td>
+          </tr>
+          <tr>
+            <td>画像</td>
+            <td><img src="area1.jpg" alt="東生駒" class="compare-img"></td>
+            <td><img src="area5.jpg" alt="高山町" class="compare-img"></td>
+            <td><img src="area6.jpg" alt="学園前" class="compare-img"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
     <div style="width:100%; display:flex; justify-content:center; margin-top:2rem;">
       <img src="graph.png" alt="グラフ" style="max-width:100%; height:auto; display:block;" />
     </div>
+
+    <button class="back-btn" onclick="showSection('city-detail')">← 戻る</button>
   </div>
 </section>
 
@@ -2058,6 +2419,190 @@ window.showSection = function(sectionId) {
   if (sectionId === 'mylist') showMylist();
 };
 </script>
+
+<script>
+function showAreaDetail(areaId) {
+  if (areaId === 'higashiikoma') {
+    showSection('higashiikoma-detail');
+    return;
+  }
+  // 他のエリアも追加可能
+}
+</script>
+
+<!-- 東生駒専用の詳細セクションを追加 -->
+<section id="higashiikoma-detail" class="flow-section">
+    
+  <div class="container">
+    <!-- 地図エリア -->
+    <h1>東生駒</h1>
+    <div style="background:#f8f9fa; border-radius:16px; box-shadow:0 2px 8px rgba(0,0,0,0.07); padding:1rem; margin-bottom:2rem; max-width:100%;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13123.231349976568!2d135.70393981053147!3d34.68479906680182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60012377e1d66ae1%3A0x9c4aa24e50d98605!2z44CSNjMwLTAyMTMg5aWI6Imv55yM55Sf6aeS5biC5p2x55Sf6aeS!5e0!3m2!1sja!2sjp!4v1753183032608!5m2!1sja!2sjp" width="100%" height="350" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <!-- 評価カード -->
+    <div style="background:#fff; border-radius:16px; box-shadow:0 2px 8px rgba(0,0,0,0.07); padding:2rem; margin-bottom:2rem; display:flex; flex-wrap:wrap; align-items:center; gap:2rem;">
+      <div style="flex:1; min-width:220px; text-align:center;">
+        <div style="display:inline-block; background:#2ecc71; color:#fff; border-radius:50%; width:80px; height:80px; font-size:2.2rem; font-weight:bold; line-height:80px;">A+</div>
+        <div style="font-size:1.2rem; font-weight:bold; margin-top:0.7rem;">総合評価</div>
+        <div style="color:#888; font-size:0.95rem;">Family Life Grade</div>
+      </div>
+      <div style="flex:2; min-width:260px;">
+        <div style="display:flex; flex-wrap:wrap; gap:1.2rem;">
+          <div style="background:#2ecc71; color:#fff; border-radius:50%; width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:1.1rem;">A+</div>
+          <div style="align-self:center;">教育環境</div>
+          <div style="background:#3498db; color:#fff; border-radius:50%; width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:1.1rem;">B+</div>
+          <div style="align-self:center;">住みやすさ</div>
+          <div style="background:#2ecc71; color:#fff; border-radius:50%; width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:1.1rem;">A+</div>
+          <div style="align-self:center;">子育て環境</div>
+          <div style="background:#f1c40f; color:#fff; border-radius:50%; width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:1.1rem;">C</div>
+          <div style="align-self:center;">多様性</div>
+        </div>
+      </div>
+    </div>
+    <!-- 説明・特徴 -->
+    
+    <div class="gallery-wrapper" style="margin-bottom:2rem;">
+      <div class="gallery" style="display:flex; gap:20px; overflow-x:auto;">
+        <div style="text-align:center;">
+          <img src="ikoma1.jpg" class="gallery-img" style="width:260px; height:180px; object-fit:cover; border-radius:12px;">
+          <div style="margin-top:0.5rem; font-size:0.98rem;">東生駒駅前の様子。駅近で生活利便性が高い。</div>
+        </div>
+        <div style="text-align:center;">
+          <iframe width="260" height="180"
+            src="https://www.youtube.com/embed/ZXpVc8MxR44?si=OCCrJ9Ah_tOMzDLy"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            style="border-radius:12px;"></iframe>
+          <div style="margin-top:0.5rem; font-size:0.98rem;">東生駒の街並み・雰囲気が分かる動画</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="area3.jpg" class="gallery-img" style="width:260px; height:180px; object-fit:cover; border-radius:12px;">
+          <div style="margin-top:0.5rem; font-size:0.98rem;">緑豊かな公園。子どもが遊べるスペース多数。</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="area4.jpg" class="gallery-img" style="width:260px; height:180px; object-fit:cover; border-radius:12px;">
+          <div style="margin-top:0.5rem; font-size:0.98rem;">閑静な住宅街。治安も良く安心。</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="area5.jpg" class="gallery-img" style="width:260px; height:180px; object-fit:cover; border-radius:12px;">
+          <div style="margin-top:0.5rem; font-size:0.98rem;">大阪方面へのアクセスも良好。</div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="back-btn" onclick="showSection('city-detail')">← 戻る</button>
+  </div>
+</section>
+
+<script>
+function toggleMylistDropdown(e) {
+  e.stopPropagation();
+  const dropdown = document.getElementById('mylist-dropdown');
+  dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+}
+document.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('mylist-dropdown');
+  if (dropdown && !dropdown.contains(e.target) && !e.target.classList.contains('mylist-button')) {
+    dropdown.style.display = 'none';
+  }
+});
+function openMylistTab(tab) {
+  document.getElementById('mylist-dropdown').style.display = 'none';
+  if (tab === 'favorite') {
+    showSection('mylist');
+    if (typeof showMylistTab === 'function') showMylistTab('favorite');
+  } else {
+    alert(tab + 'ページ（今後実装）');
+  }
+}
+</script>
+
+<script>
+// チャットルーム機能
+let currentChatArea = null;
+const chatDummyMessages = {
+  gakuenmae: [
+    {user: false, text: 'こんにちは！学園前エリアの住み心地どうですか？'},
+    {user: false, text: '子育て世帯が多くて安心ですよ。'},
+    {user: true, text: '駅前のスーパーが便利ですね！'}
+  ],
+  takayamacho: [
+    {user: false, text: '高山町は自然がいっぱいで癒されます。'},
+    {user: true, text: '週末は家族で釣りに行きます！'},
+    {user: false, text: 'アウトドア好きには最高の場所ですね。'}
+  ],
+  minamiikoma: [
+    {user: false, text: '南生駒は学校が近くて助かります。'},
+    {user: true, text: '公園も多くて子どもがのびのび遊べます。'},
+    {user: false, text: '治安も良くて安心です。'}
+  ]
+};
+function openChatRoom(area) {
+  currentChatArea = area;
+  document.getElementById('chat-modal').classList.add('active');
+  const areaTitles = {gakuenmae:'学園前', takayamacho:'高山町', minamiikoma:'南生駒'};
+  document.getElementById('chat-area-title').textContent = areaTitles[area] + ' オープンチャット';
+  loadChatMessages();
+  setTimeout(()=>{
+    document.getElementById('chat-input').focus();
+  }, 200);
+}
+function closeChatRoom() {
+  document.getElementById('chat-modal').classList.remove('active');
+  currentChatArea = null;
+}
+function loadChatMessages() {
+  const chatBox = document.getElementById('chat-messages');
+  chatBox.innerHTML = '';
+  if (!currentChatArea) return;
+  let messages = JSON.parse(localStorage.getItem('chat_'+currentChatArea) || 'null');
+  if (!messages) {
+    messages = chatDummyMessages[currentChatArea] || [];
+    localStorage.setItem('chat_'+currentChatArea, JSON.stringify(messages));
+  }
+  messages.forEach(msg => {
+    const div = document.createElement('div');
+    div.className = 'chat-message ' + (msg.user ? 'user' : 'other');
+    div.textContent = msg.text;
+    chatBox.appendChild(div);
+  });
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+function sendChatMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text || !currentChatArea) return;
+  let messages = JSON.parse(localStorage.getItem('chat_'+currentChatArea) || 'null');
+  if (!messages) messages = chatDummyMessages[currentChatArea] || [];
+  messages.push({user:true, text});
+  localStorage.setItem('chat_'+currentChatArea, JSON.stringify(messages));
+  input.value = '';
+  loadChatMessages();
+}
+// モーダル外クリックで閉じる
+window.addEventListener('click', function(e){
+  const modal = document.getElementById('chat-modal');
+  if(e.target === modal) closeChatRoom();
+});
+</script>
+
+<!-- チャットルームUI -->
+<div id="chat-modal" class="chat-modal">
+  <div class="chat-modal-content">
+    <div class="chat-header">
+      <span id="chat-area-title"></span>
+      <button class="chat-close-btn" onclick="closeChatRoom()">×</button>
+    </div>
+    <div id="chat-messages" class="chat-messages"></div>
+    <div class="chat-input-area">
+      <input id="chat-input" type="text" placeholder="メッセージを入力..." onkeydown="if(event.key==='Enter'){sendChatMessage();}">
+      <button onclick="sendChatMessage()">送信</button>
+    </div>
+  </div>
+</div>
 
 </body>
 
