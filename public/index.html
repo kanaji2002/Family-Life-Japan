@@ -871,7 +871,7 @@
             gap: 1rem;
           }
           .area-recommend-box > div:not(.area-recommend-img):not(.favorite-star) {
-            width: 100%;
+                width: 100%;
             text-align: left !important;
           }
           .area-recommend-img {
@@ -1093,9 +1093,9 @@
           padding: 20px 10px 10px 100px;
           position: relative;
           background: #f8f9fa;
-        }
-
-        .map {
+            }
+            
+            .map {
             width: 100%;
             height: auto; /* 高さは自動調整 */
             aspect-ratio: 3 / 4; /* 必要なら比率を調整 */
@@ -1358,6 +1358,148 @@
           font-size: 1rem;
         }
 
+        .school-card-list {
+          display: flex;
+          gap: 2rem;
+          margin: 3rem 0 2rem 0;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+        .school-card {
+          background: #fff;
+          border-radius: 18px;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+          width: 340px;
+          padding: 0 0 1.5rem 0;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          transition: box-shadow 0.2s;
+        }
+        .school-card:hover {
+          box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+        }
+        .school-card-img-wrap {
+          position: relative;
+          width: 100%;
+          max-width: 100%;
+          height: auto;
+          overflow: hidden;
+          border-radius: 18px 18px 0 0;
+          background: #f3f3f3;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+        }
+        .school-card-img {
+          width: 100%;
+          height: auto;
+          max-height: 120px;
+          object-fit: contain;
+          display: block;
+          border-radius: 18px 18px 0 0;
+          background: #f3f3f3;
+        }
+        .school-sponsored {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          background: #555;
+          color: #fff;
+          font-size: 0.95rem;
+          padding: 0.3em 0.9em;
+          border-radius: 7px;
+          font-weight: bold;
+          z-index: 2;
+        }
+        .school-fav-btn {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 44px;
+          height: 44px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 2;
+          transition: background 0.2s;
+        }
+        .school-fav-btn:hover {
+          background: #f0f8ff;
+        }
+        .school-fav-icon {
+          font-size: 2rem;
+          color: #1abc9c;
+        }
+        .school-card-label {
+          margin: 1.1rem 0 0.2rem 1.2rem;
+          font-size: 0.95rem;
+          color: #555;
+          font-weight: bold;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+        .school-card-title {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin: 0 0 0.2rem 1.2rem;
+          color: #2c3e50;
+        }
+        .school-verified {
+          color: #3498db;
+          font-size: 1.1em;
+          vertical-align: middle;
+        }
+        .school-card-desc {
+          font-size: 1rem;
+          color: #444;
+          margin: 0 0 0.2rem 1.2rem;
+        }
+        .school-card-rating {
+          font-size: 1.1rem;
+          color: #444;
+          margin: 0 0 0 1.2rem;
+          font-weight: bold;
+        }
+        
+        .double-image-row {
+          display: flex;
+          gap: 1.5rem;
+          justify-content: center;
+          margin: 2rem 0;
+        }
+        .double-img-wrap {
+          position: relative;
+          display: inline-block;
+        }
+        .double-img {
+          width: 480px;
+          height: 250px;
+          object-fit: cover;
+          border-radius: 14px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+          background: #f3f3f3;
+          display: block;
+        }
+        .double-img-ad {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background: rgba(40,40,40,0.75);
+          color: #fff;
+          font-size: 1rem;
+          padding: 0.2em 0.9em;
+          border-radius: 7px;
+          font-weight: bold;
+          z-index: 2;
+          letter-spacing: 0.1em;
+        }
+        
     </style>
 </head>
 <body>
@@ -1548,35 +1690,35 @@
               </div>
               <div style="flex:1; display:flex; justify-content:center;">
                 <!-- 元の日本地図と地方情報は絶対にそのまま -->
-                <div class="japan-map">
+            <div class="japan-map">
                   <img src="japan.png" class="japan-map-bg" alt="日本地図"
                        style="position:absolute; left:0; top:0; width:80%; height:100%; z-index:0; pointer-events:none; margin-left:80px;">
                   <!-- エリアdiv群はz-index:1で上に重ねる -->
-                  <div class="region not-recommended hokkaido" onclick="selectRegion('hokkaido')" data-region="北海道">
-                      北海道
-                  </div>
-                  <div class="region not-recommended tohoku" onclick="selectRegion('tohoku')" data-region="東北地方">
-                      東北地方
-                  </div>
-                  <div class="region good kanto" onclick="selectRegion('kanto')" data-region="関東地方">
-                      関東地方
-                  </div>
-                  <div class="region not-recommended chubu" onclick="selectRegion('chubu')" data-region="中部地方">
-                      中部地方
-                  </div>
-                  <div class="region recommended kansai" onclick="selectRegion('kansai')" data-region="関西地方">
-                      関西地方
-                  </div>
-                  <div class="region not-recommended chugoku" onclick="selectRegion('chugoku')" data-region="中国地方">
-                      中国地方
-                  </div>
-                  <div class="region not-recommended shikoku" onclick="selectRegion('shikoku')" data-region="四国地方">
-                      四国地方
-                  </div>
-                  <div class="region good kyushu" onclick="selectRegion('kyushu')" data-region="九州地方">
-                      九州地方
-                  </div>
+                <div class="region not-recommended hokkaido" onclick="selectRegion('hokkaido')" data-region="北海道">
+                    北海道
                 </div>
+                <div class="region not-recommended tohoku" onclick="selectRegion('tohoku')" data-region="東北地方">
+                    東北地方
+                </div>
+                <div class="region good kanto" onclick="selectRegion('kanto')" data-region="関東地方">
+                    関東地方
+                </div>
+                <div class="region not-recommended chubu" onclick="selectRegion('chubu')" data-region="中部地方">
+                    中部地方
+                </div>
+                <div class="region recommended kansai" onclick="selectRegion('kansai')" data-region="関西地方">
+                    関西地方
+                </div>
+                <div class="region not-recommended chugoku" onclick="selectRegion('chugoku')" data-region="中国地方">
+                    中国地方
+                </div>
+                <div class="region not-recommended shikoku" onclick="selectRegion('shikoku')" data-region="四国地方">
+                    四国地方
+                </div>
+                <div class="region good kyushu" onclick="selectRegion('kyushu')" data-region="九州地方">
+                    九州地方
+                </div>
+            </div>
               </div>
               <div class="ad ad-right">
                 <img src="ad-right.png" alt="広告" style="width:200px; max-width:100%;">
@@ -1671,13 +1813,13 @@
                     <div class="area rank-aplus" data-area="tokyo" style="top: 20%; left: 36%; width: 120px; height: 80px;">
                         奈良市（A＋）
                     </div>
-                    <div class="area rank-s" data-area="osaka" style="top: 45%; left: 7%; width: 100px; height: 70px;">
+                    <div class="area rank-b" data-area="osaka" style="top: 45%; left: 7%; width: 100px; height: 70px;">
                         五條市（B）
                     </div>
                     <div class="area rank-aplus" data-area="kyoto" style="top: 40%; left: 40%; width: 97px; height: 60px;">
                         吉野町（A＋）
                     </div>
-                    <div class="area rank-b" data-area="yokohama" style="top: 30%; left: 65%; width: 110px; height: 75px;">
+                    <div class="area rank-s" data-area="yokohama" style="top: 30%; left: 65%; width: 110px; height: 75px;">
                         宇陀市（S）
                     </div>
                     <div class="area rank-bplus" data-area="nagoya" style="top: 55%; left: 40%; width: 95px; height: 65px;">
@@ -1751,61 +1893,61 @@
       <!-- 右：詳細カード（既存のcity-profileや詳細カード） -->
       <div class="city-detail-content">
         <!-- ここに既存の詳細カードやエリアボックスを入れる -->
-        <div class="city-profile">
-          <!-- メインプロフィール部分 -->
+    <div class="city-profile">
+      <!-- メインプロフィール部分 -->
 
 
 
-          <div class="profile-main">
-            <div class="profile-hero">
+      <div class="profile-main">
+        <div class="profile-hero">
               <h2 id="cityTitle">🏔️ 奈良市 - 自然と都市の調和</h2>
-            </div>
-            <div class="profile-content">
-              <p id="cityDescription">大阪まで35分、平均家族生活費18万円</p>
+        </div>
+        <div class="profile-content">
+          <p id="cityDescription">大阪まで35分、平均家族生活費18万円</p>
 
-              <!-- タブメニュー -->
-              <div class="tabs">
-                <div class="tab active" onclick="showTab('education')">保育・教育</div>
-                <div class="tab" onclick="showTab('housing')">住宅・費用</div>
-                <div class="tab" onclick="showTab('community')">コミュニティ</div>
-                <div class="tab" onclick="showTab('work')">仕事・交通</div>
-              </div>
-
-              <!-- 各タブのコンテンツ -->
-              <div id="education-content" class="tab-content active">
-                <h3>保育・教育</h3>
-                <p>生駒市には質の高い保育施設と教育機関が揃っています。自然体験やIT教育も積極的に取り入れられています。</p>
-              </div>
-
-              <div id="housing-content" class="tab-content">
-                <h3>住宅・費用</h3>
-                <p>生駒市の住宅は比較的手頃で、都市近郊ながらも自然に囲まれた環境が魅力です。平均家賃や住宅支援制度も充実しています。</p>
-              </div>
-
-              <div id="community-content" class="tab-content">
-                <h3>コミュニティ</h3>
-                <p>地域のイベントや子育てサークルが活発で、子育て世代のつながりを大切にする雰囲気があります。外国人支援もあります。</p>
-              </div>
-
-              <div id="work-content" class="tab-content">
-                <h3>仕事・交通</h3>
-                <p>大阪・奈良へのアクセスが良好で、通勤に便利。駅周辺にはコワーキングスペースも整備され、リモートワークにも対応。</p>
-              </div>
-            </div>
+          <!-- タブメニュー -->
+          <div class="tabs">
+            <div class="tab active" onclick="showTab('education')">保育・教育</div>
+            <div class="tab" onclick="showTab('housing')">住宅・費用</div>
+            <div class="tab" onclick="showTab('community')">コミュニティ</div>
+            <div class="tab" onclick="showTab('work')">仕事・交通</div>
           </div>
 
-          <!-- サイドバー -->
-          <div class="profile-sidebar">
-            <div class="rating">
-              <h3>4.5/5</h3>
-              <p>家族に優しい地域</p>
-            </div>
-            <div class="action-buttons">
-              <button class="action-btn primary" onclick="showSection('region-overview')">地域概要を見る</button>
-              <button class="action-btn secondary" onclick="showSection('map-results')">地図結果に戻る</button>
-            </div>
+          <!-- 各タブのコンテンツ -->
+          <div id="education-content" class="tab-content active">
+            <h3>保育・教育</h3>
+            <p>生駒市には質の高い保育施設と教育機関が揃っています。自然体験やIT教育も積極的に取り入れられています。</p>
+          </div>
+
+          <div id="housing-content" class="tab-content">
+            <h3>住宅・費用</h3>
+            <p>生駒市の住宅は比較的手頃で、都市近郊ながらも自然に囲まれた環境が魅力です。平均家賃や住宅支援制度も充実しています。</p>
+          </div>
+
+          <div id="community-content" class="tab-content">
+            <h3>コミュニティ</h3>
+            <p>地域のイベントや子育てサークルが活発で、子育て世代のつながりを大切にする雰囲気があります。外国人支援もあります。</p>
+          </div>
+
+          <div id="work-content" class="tab-content">
+            <h3>仕事・交通</h3>
+            <p>大阪・奈良へのアクセスが良好で、通勤に便利。駅周辺にはコワーキングスペースも整備され、リモートワークにも対応。</p>
           </div>
         </div>
+      </div>
+
+      <!-- サイドバー -->
+      <div class="profile-sidebar">
+        <div class="rating">
+          <h3>4.5/5</h3>
+          <p>家族に優しい地域</p>
+        </div>
+        <div class="action-buttons">
+          <button class="action-btn primary" onclick="showSection('region-overview')">地域概要を見る</button>
+          <button class="action-btn secondary" onclick="showSection('map-results')">地図結果に戻る</button>
+        </div>
+      </div>
+    </div>
 
 
         <div class="yoko">
@@ -1930,10 +2072,10 @@
 
 
         <!-- ナビゲーション
-        <div class="navigation">
-          <button class="back-btn" onclick="showSection('region-overview')">← 戻る</button>
+    <div class="navigation">
+      <button class="back-btn" onclick="showSection('region-overview')">← 戻る</button>
         </div> -->
-      </div>
+    </div>
     </div>
 
 
@@ -2376,6 +2518,8 @@ document.querySelectorAll('.favorite-star').forEach(btn => {
     </div>
 
     <button class="back-btn" onclick="showSection('city-detail')">← 戻る</button>
+    <!-- 学校カードリスト -->
+    
   </div>
 </section>
 
@@ -2493,8 +2637,62 @@ function showAreaDetail(areaId) {
       </div>
     </div>
     
-    <button class="back-btn" onclick="showSection('city-detail')">← 戻る</button>
+    
+    <!-- 学校カード型ブロック -->
+    <div class="double-image-row">
+      <div class="double-img-wrap">
+        <img src="ado3.jpg" alt="画像1" class="double-img">
+        <span class="double-img-ad">広告</span>
+      </div>
+      <div class="double-img-wrap">
+        <img src="ado4.jpg" alt="画像2" class="double-img">
+        <span class="double-img-ad">広告</span>
+      </div>
+    </div>
+
+    <div class="school-card-list">
+        <div class="school-card">
+          <div class="school-card-img-wrap">
+            <img src="school1.jpg" alt="School 1" class="school-card-img">
+            <span class="school-sponsored">Sponsored</span>
+            <button class="school-fav-btn" aria-label="お気に入り"><span class="school-fav-icon">♡</span></button>
+          </div>
+          <div class="school-card-label">CHARTER SCHOOL</div>
+          <div class="school-card-title">Middle School & High School for Architecture, Engineering, and Construction Industries <span class="school-verified">✔</span></div>
+          <div class="school-card-desc">建築・工学・建設分野に特化した中高一貫校。実践的な学びと多様な進路サポートが魅力です。</div>
+          <div class="school-card-rating">★★★★☆ 59</div>
+        </div>
+        <div class="school-card">
+          <div class="school-card-img-wrap">
+            <img src="school2.jpg" alt="School 2" class="school-card-img">
+            <span class="school-sponsored">Sponsored</span>
+            <button class="school-fav-btn" aria-label="お気に入り"><span class="school-fav-icon">♡</span></button>
+          </div>
+          <div class="school-card-label">CHRISTIAN SCHOOL</div>
+          <div class="school-card-title">Saint Demetrios Greek-American School - Elementary/Middle/High School <span class="school-verified">✔</span></div>
+          <div class="school-card-desc">ギリシャ系アメリカ人向けのキリスト教系一貫校。国際色豊かで多文化共生の教育環境です。</div>
+          <div class="school-card-rating">★★★★☆ 66</div>
+        </div>
+        <div class="school-card">
+          <div class="school-card-img-wrap">
+            <img src="school3.jpg" alt="School 3" class="school-card-img">
+            <span class="school-sponsored">Sponsored</span>
+            <button class="school-fav-btn" aria-label="お気に入り"><span class="school-fav-icon">♡</span></button>
+          </div>
+          <div class="school-card-label">PRIVATE SCHOOL</div>
+          <div class="school-card-title">Fusion Academy Upper West Side <span class="school-verified">✔</span></div>
+          <div class="school-card-desc">個別指導に特化した私立校。生徒一人ひとりに合わせた柔軟なカリキュラムが特長です。</div>
+          <div class="school-card-rating">★★★★☆ 3</div>
+        </div>
+      </div>
+    
   </div>
+
+  
+
+  <button class="back-btn" onclick="showSection('city-detail')">← 戻る</button>
+
+  
 </section>
 
 <script>
