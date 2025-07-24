@@ -1500,6 +1500,41 @@
           letter-spacing: 0.1em;
         }
         
+        .main-photo-row {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 2rem;
+        }
+        .main-photo-wrap {
+          position: relative;
+          display: inline-block;
+          width: 100%;
+          max-width: 900px;
+        }
+        .main-photo-img {
+          width: 100%;
+          max-width: 900px;
+          height: auto;
+          border-radius: 18px;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+          object-fit: cover;
+          background: #f3f3f3;
+          display: block;
+        }
+        .main-photo-ad {
+          position: absolute;
+          top: 18px;
+          left: 18px;
+          background: rgba(40,40,40,0.75);
+          color: #fff;
+          font-size: 1.1rem;
+          padding: 0.25em 1.1em;
+          border-radius: 8px;
+          font-weight: bold;
+          z-index: 2;
+          letter-spacing: 0.1em;
+        }
     </style>
 </head>
 <body>
@@ -2636,12 +2671,14 @@ function showAreaDetail(areaId) {
         </div>
       </div>
     </div>
+
+    
     
     
     <!-- 学校カード型ブロック -->
     <div class="double-image-row">
       <div class="double-img-wrap">
-        <img src="ado3.jpg" alt="画像1" class="double-img">
+        <img src="mainphoto.jpg" alt="画像1" class="double-img">
         <span class="double-img-ad">広告</span>
       </div>
       <div class="double-img-wrap">
@@ -2649,6 +2686,15 @@ function showAreaDetail(areaId) {
         <span class="double-img-ad">広告</span>
       </div>
     </div>
+
+
+    <!-- <div class="main-photo-row">
+      <div class="main-photo-wrap">
+        <img src="mainphoto.jpg" alt="メイン写真" class="main-photo-img">
+        <span class="main-photo-ad">広告</span>
+      </div>
+    </div> -->
+
 
     <div class="school-card-list">
         <div class="school-card">
